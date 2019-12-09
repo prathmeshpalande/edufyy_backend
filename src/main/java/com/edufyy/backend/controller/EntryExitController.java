@@ -1,7 +1,7 @@
 package com.edufyy.backend.controller;
 
 import com.edufyy.backend.model.GeneralResponseObject;
-import com.edufyy.backend.model.LoginRequest;
+import com.edufyy.backend.model.LoginCredentials;
 import com.edufyy.backend.model.SignupRequest;
 import com.edufyy.backend.service.EntryExitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +24,9 @@ public class EntryExitController {
     }
 
     @PostMapping("/login")
-    public GeneralResponseObject login(@RequestBody LoginRequest loginRequest) {
+    public GeneralResponseObject login(@RequestBody LoginCredentials loginCredentials) {
 
-        entryExitService.login(loginRequest);
+        entryExitService.login(loginCredentials);
 
         return GeneralResponseObject.getSuccessResponse();
     }

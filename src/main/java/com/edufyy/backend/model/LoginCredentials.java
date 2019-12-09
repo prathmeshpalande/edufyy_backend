@@ -1,6 +1,6 @@
 package com.edufyy.backend.model;
 
-public class LoginRequest {
+public class LoginCredentials {
 
     private String email;
     private String password;
@@ -21,10 +21,10 @@ public class LoginRequest {
         this.password = password;
     }
 
-    public LoginRequest() {
+    public LoginCredentials() {
     }
 
-    public LoginRequest(String email, String password) {
+    public LoginCredentials(String email, String password) {
         this.email = email;
         this.password = password;
     }
