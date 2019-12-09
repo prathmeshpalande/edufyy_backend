@@ -7,6 +7,7 @@ import com.edufyy.backend.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class EntryExitService {
 
     public GeneralResponseObject signup(SignupRequest signupRequest) {
 
+        GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
         // TODO: Perform Signup
         User user = new User();
         user.setEmail(signupRequest.getEmail());
@@ -30,12 +32,15 @@ public class EntryExitService {
 
         try {
             userService.add(user);
-        } catch(Exception e) {
+        } catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
             logger.error(e.toString());
-            return GeneralResponseObject.getFailureResponse();
+            response = GeneralResponseObject.getFailureResponse();
+            response.setResponseMessage("User already exists, please continue to login!");
+            return response;
         }
 
-        return GeneralResponseObject.getSuccessResponse();
+        return response;
     }
 
     public GeneralResponseObject login(LoginCredentials loginCredentials) {
