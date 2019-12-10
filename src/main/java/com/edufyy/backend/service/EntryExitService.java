@@ -18,7 +18,7 @@ import java.util.Map;
 public class EntryExitService {
 
     Logger logger = LoggerFactory.getLogger(EntryExitService.class);
-    
+
     @Autowired
     UserComponent userComponent;
 
@@ -28,7 +28,6 @@ public class EntryExitService {
     public GeneralResponseObject signup(SignupRequest signupRequest) {
 
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
-        // TODO: Perform Signup
         User user = new User();
         user.setEmail(signupRequest.getEmail());
         user.setName(signupRequest.getName());
@@ -73,10 +72,6 @@ public class EntryExitService {
 
     public GeneralResponseObject login(LoginCredentials loginCredentials) {
 
-        // TODO: Perform Login
-
-//        List<User> listUser = userComponent.findByEmail(loginCredentials.getEmail());
-//        User user = listUser.get(0);
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
         User user = userComponent.findByEmail(loginCredentials.getEmail());
 
@@ -101,8 +96,7 @@ public class EntryExitService {
             response = GeneralResponseObject.getFailureResponse();
             response.setResponseMessage("Invalid user. Please try signing up!");
         }
-
-
+        
         return response;
     }
 }
