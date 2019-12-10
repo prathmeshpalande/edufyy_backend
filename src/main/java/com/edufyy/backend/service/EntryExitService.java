@@ -96,7 +96,7 @@ public class EntryExitService {
             response = GeneralResponseObject.getFailureResponse();
             response.setResponseMessage("Invalid user. Please try signing up!");
         }
-        
+
         return response;
     }
 }
