@@ -1,5 +1,7 @@
 package com.edufyy.backend.service;
 
+import com.edufyy.backend.component.SessionComponent;
+import com.edufyy.backend.component.UserComponent;
 import com.edufyy.backend.model.*;
 import com.edufyy.backend.util.Emailer;
 import com.edufyy.backend.util.MD5;
@@ -10,18 +12,18 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
 public class EntryExitService {
 
     Logger logger = LoggerFactory.getLogger(EntryExitService.class);
+    
     @Autowired
-    UserService userService;
+    UserComponent userComponent;
 
     @Autowired
-    SessionService sessionService;
+    SessionComponent sessionComponent;
 
     public GeneralResponseObject signup(SignupRequest signupRequest) {
 
@@ -37,7 +39,7 @@ public class EntryExitService {
         user.setSource(signupRequest.getSource());
 
         try {
-            userService.add(user);
+            userComponent.add(user);
         } catch(DataIntegrityViolationException e) {
             e.printStackTrace();
             logger.error(e.toString());
@@ -59,7 +61,7 @@ public class EntryExitService {
         Session session = new Session();
         session.setEmail(signupRequest.getEmail());
         session.setSessionKey(sessionKey);
-        sessionService.add(session);
+        sessionComponent.add(session);
 
         Map<String, String> responseData = new HashMap<>();
         responseData.put("otp", otp);
@@ -73,21 +75,21 @@ public class EntryExitService {
 
         // TODO: Perform Login
 
-//        List<User> listUser = userService.findByEmail(loginCredentials.getEmail());
+//        List<User> listUser = userComponent.findByEmail(loginCredentials.getEmail());
 //        User user = listUser.get(0);
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
-        User user = userService.findByEmail(loginCredentials.getEmail());
+        User user = userComponent.findByEmail(loginCredentials.getEmail());
 
         if(user != null) {
             if(user.getPassword().equals(loginCredentials.getPassword())) {
                 String sessionKey = MD5.getMd5(loginCredentials.getEmail() + System.currentTimeMillis());
-                Integer updateResponse = sessionService.updateSession(sessionKey, loginCredentials.getEmail());
+                Integer updateResponse = sessionComponent.updateSession(sessionKey, loginCredentials.getEmail());
 
                 if(updateResponse == 0) {
                     Session session = new Session();
                     session.setEmail(loginCredentials.getEmail());
                     session.setSessionKey(sessionKey);
-                    sessionService.add(session);
+                    sessionComponent.add(session);
                 }
 
                 Map<String, String> responseData = new HashMap<>();

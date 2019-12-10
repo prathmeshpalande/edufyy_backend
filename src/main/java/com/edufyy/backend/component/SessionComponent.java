@@ -1,4 +1,4 @@
-package com.edufyy.backend.service;
+package com.edufyy.backend.component;
 
 import com.edufyy.backend.model.Session;
 import com.edufyy.backend.model.User;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SessionService {
+public class SessionComponent {
 
     @Autowired
     SessionRepository sessionRepository;
