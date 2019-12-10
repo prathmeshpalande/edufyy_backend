@@ -26,8 +26,8 @@ public class EntryExitController {
     @PostMapping("/login")
     public GeneralResponseObject login(@RequestBody LoginCredentials loginCredentials) {
 
-        entryExitService.login(loginCredentials);
+        GeneralResponseObject response = entryExitService.login(loginCredentials);
 
-        return GeneralResponseObject.getSuccessResponse();
+        return response;
     }
 }
