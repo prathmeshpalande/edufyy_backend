@@ -11,10 +11,7 @@ public class Question {
     @GeneratedValue
     private long id;
 
-    private String subject;
-    private String chapter;
-    private String topic;
-    private String subTopic;
+    private String questionKey;
     private Integer questionNumber;
     private String question;
     private String optionA;
@@ -29,12 +26,9 @@ public class Question {
     public Question() {
     }
 
-    public Question(long id, String subject, String chapter, String topic, String subTopic, Integer questionNumber, String question, String optionA, String optionB, String optionC, String optionD, Character correctOption, Integer developerDifficulty, Integer studentDiffuculty, Boolean isPremium) {
+    public Question(long id, String questionKey, Integer questionNumber, String question, String optionA, String optionB, String optionC, String optionD, Character correctOption, Integer developerDifficulty, Integer studentDiffuculty, Boolean isPremium) {
         this.id = id;
-        this.subject = subject;
-        this.chapter = chapter;
-        this.topic = topic;
-        this.subTopic = subTopic;
+        this.questionKey = questionKey;
         this.questionNumber = questionNumber;
         this.question = question;
         this.optionA = optionA;
@@ -55,36 +49,12 @@ public class Question {
         this.id = id;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getQuestionKey() {
+        return questionKey;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getChapter() {
-        return chapter;
-    }
-
-    public void setChapter(String chapter) {
-        this.chapter = chapter;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public String getSubTopic() {
-        return subTopic;
-    }
-
-    public void setSubTopic(String subTopic) {
-        this.subTopic = subTopic;
+    public void setQuestionKey(String questionKey) {
+        this.questionKey = questionKey;
     }
 
     public Integer getQuestionNumber() {

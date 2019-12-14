@@ -12,10 +12,7 @@ public class Answer {
     private long id;
 
     private String email;
-    private String subject;
-    private String chapter;
-    private String topic;
-    private String subTopic;
+    private String questionKey;
     private Integer questionNumber;
     private Integer studentDifficulty;
     private Integer surity;
@@ -24,13 +21,10 @@ public class Answer {
     public Answer() {
     }
 
-    public Answer(long id, String email, String subject, String chapter, String topic, String subTopic, Integer questionNumber, Integer studentDifficulty, Integer surity, Boolean isCorrect) {
+    public Answer(long id, String email, String questionKey, Integer questionNumber, Integer studentDifficulty, Integer surity, Boolean isCorrect) {
         this.id = id;
         this.email = email;
-        this.subject = subject;
-        this.chapter = chapter;
-        this.topic = topic;
-        this.subTopic = subTopic;
+        this.questionKey = questionKey;
         this.questionNumber = questionNumber;
         this.studentDifficulty = studentDifficulty;
         this.surity = surity;
@@ -53,36 +47,12 @@ public class Answer {
         this.email = email;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getQuestionKey() {
+        return questionKey;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getChapter() {
-        return chapter;
-    }
-
-    public void setChapter(String chapter) {
-        this.chapter = chapter;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public String getSubTopic() {
-        return subTopic;
-    }
-
-    public void setSubTopic(String subTopic) {
-        this.subTopic = subTopic;
+    public void setQuestionKey(String questionKey) {
+        this.questionKey = questionKey;
     }
 
     public Integer getQuestionNumber() {
