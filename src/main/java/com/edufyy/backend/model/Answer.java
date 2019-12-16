@@ -16,19 +16,18 @@ public class Answer {
     private Integer questionNumber;
     private Integer studentDifficulty;
     private Integer surity;
-    private Boolean isCorrect;
-
+    private Character answer;
     public Answer() {
     }
 
-    public Answer(long id, String email, String questionKey, Integer questionNumber, Integer studentDifficulty, Integer surity, Boolean isCorrect) {
+    public Answer(long id, String email, String questionKey, Integer questionNumber, Integer studentDifficulty, Integer surity, Character answer) {
         this.id = id;
         this.email = email;
         this.questionKey = questionKey;
         this.questionNumber = questionNumber;
         this.studentDifficulty = studentDifficulty;
         this.surity = surity;
-        this.isCorrect = isCorrect;
+        this.answer = answer;
     }
 
     public long getId() {
@@ -79,11 +78,11 @@ public class Answer {
         this.surity = surity;
     }
 
-    public Boolean getCorrect() {
-        return isCorrect;
+    public Character getAnswer() {
+        return answer;
     }
 
-    public void setCorrect(Boolean correct) {
-        isCorrect = correct;
+    public void setAnswer(Character answer) {
+        this.answer = answer;
     }
 }
