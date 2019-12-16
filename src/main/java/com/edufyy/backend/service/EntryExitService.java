@@ -31,7 +31,7 @@ public class EntryExitService {
         user.setName(signupRequest.getName());
         user.setPassword(signupRequest.getPassword());
         user.setPhone(signupRequest.getPhone());
-        // Todo: Determine set premiun logic
+        // Todo: Determine set premium logic
         user.setPremium(true);
         user.setSource(signupRequest.getSource());
 

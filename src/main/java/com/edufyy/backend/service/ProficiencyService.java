@@ -28,10 +28,10 @@ public class ProficiencyService {
         // Map difficulty to answers
         Map<Double, List<Answer>> mapDifficultyToAnswers = mapDifficultyToAnswers(answers);
         // Count total answers
-        Integer totalAnswers = answers.size();
+        int totalAnswers = answers.size();
 
         // TODO: Find individual proficiency and calculate key proficiency
-        // Find subproficiency per question difficulty
+        // Find sub-proficiency per question difficulty
         List<Double> subProficiency = new ArrayList<>();
         for (Map.Entry<Double, List<Answer>> difficultyToAnswerEntry : mapDifficultyToAnswers.entrySet()) {
             Integer totalRight = 0;
@@ -39,9 +39,9 @@ public class ProficiencyService {
                 if (questionService.findByAnswer(answer.getQuestionKey(), answer.getQuestionNumber(), answer.getAnswer()) != null)
                     totalRight += 1;
 
-            subProficiency.add((double) difficultyToAnswerEntry.getKey() * totalRight / ((double) totalAnswers / 2) * 0.75);
+            subProficiency.add(difficultyToAnswerEntry.getKey() * totalRight / ((double) totalAnswers / 2) * 0.75);
         }
-        // Sum prificiencies for key
+        // Sum proficiencies for key
         Double proficiency = subProficiency.stream().mapToDouble(Double::doubleValue).sum();
 
         // Construct response
