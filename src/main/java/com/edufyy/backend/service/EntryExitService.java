@@ -1,7 +1,5 @@
 package com.edufyy.backend.service;
 
-import com.edufyy.backend.component.SessionComponent;
-import com.edufyy.backend.component.UserComponent;
 import com.edufyy.backend.model.*;
 import com.edufyy.backend.util.Emailer;
 import com.edufyy.backend.util.MD5;
@@ -20,10 +18,10 @@ public class EntryExitService {
     Logger logger = LoggerFactory.getLogger(EntryExitService.class);
 
     @Autowired
-    UserComponent userComponent;
+    UserService userService;
 
     @Autowired
-    SessionComponent sessionComponent;
+    SessionService sessionService;
 
     public GeneralResponseObject signup(SignupRequest signupRequest) {
 
@@ -38,7 +36,7 @@ public class EntryExitService {
         user.setSource(signupRequest.getSource());
 
         try {
-            userComponent.add(user);
+            userService.add(user);
         } catch(DataIntegrityViolationException e) {
             e.printStackTrace();
             logger.error(e.toString());
@@ -60,7 +58,7 @@ public class EntryExitService {
         Session session = new Session();
         session.setEmail(signupRequest.getEmail());
         session.setSessionKey(sessionKey);
-        sessionComponent.add(session);
+        sessionService.add(session);
 
         Map<String, String> responseData = new HashMap<>();
         responseData.put("otp", otp);
@@ -73,18 +71,18 @@ public class EntryExitService {
     public GeneralResponseObject login(LoginCredentials loginCredentials) {
 
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
-        User user = userComponent.findByEmail(loginCredentials.getEmail());
+        User user = userService.findByEmail(loginCredentials.getEmail());
 
         if(user != null) {
             if(user.getPassword().equals(loginCredentials.getPassword())) {
                 String sessionKey = MD5.getMd5(loginCredentials.getEmail() + System.currentTimeMillis());
-                Integer updateResponse = sessionComponent.updateSession(sessionKey, loginCredentials.getEmail());
+                Integer updateResponse = sessionService.updateSession(sessionKey, loginCredentials.getEmail());
 
                 if(updateResponse == 0) {
                     Session session = new Session();
                     session.setEmail(loginCredentials.getEmail());
                     session.setSessionKey(sessionKey);
-                    sessionComponent.add(session);
+                    sessionService.add(session);
                 }
 
                 Map<String, String> responseData = new HashMap<>();
@@ -96,7 +94,7 @@ public class EntryExitService {
             response = GeneralResponseObject.getFailureResponse();
             response.setResponseMessage("Invalid user. Please try signing up!");
         }
-        
+
         return response;
     }
 }

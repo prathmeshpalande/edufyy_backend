@@ -1,13 +1,13 @@
-package com.edufyy.backend.component;
+package com.edufyy.backend.service;
 
+import com.edufyy.backend.model.Answer;
 import com.edufyy.backend.model.Session;
-import com.edufyy.backend.model.User;
 import com.edufyy.backend.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SessionComponent {
+public class SessionService {
 
     @Autowired
     SessionRepository sessionRepository;
@@ -19,5 +19,9 @@ public class SessionComponent {
 
     public Integer updateSession(String sessionKey, String email) {
         return sessionRepository.updateSession(sessionKey, email);
+    }
+
+    public Session findBySessionKey(String sessionKey) {
+        return sessionRepository.findBySessionKey(sessionKey);
     }
 }

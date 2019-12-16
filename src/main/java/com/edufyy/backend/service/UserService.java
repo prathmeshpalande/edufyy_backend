@@ -1,14 +1,12 @@
-package com.edufyy.backend.component;
+package com.edufyy.backend.service;
 
 import com.edufyy.backend.model.User;
 import com.edufyy.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
-public class UserComponent {
+public class UserService {
 
     @Autowired
     UserRepository userRepository;
