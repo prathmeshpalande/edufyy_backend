@@ -26,22 +26,22 @@ public class ProficiencyService {
 
         // TODO: Proficiency Calculation Logic
         // Map difficulty to answers
-        Map<Integer, List<Answer>> mapDifficultyToAnswers = mapDifficultyToAnswers(answers);
+        Map<Double, List<Answer>> mapDifficultyToAnswers = mapDifficultyToAnswers(answers);
         // Count total answers
-        Integer totalAnswers = answers.size();
+        int totalAnswers = answers.size();
 
         // TODO: Find individual proficiency and calculate key proficiency
-        // Find subproficiency per question difficulty
+        // Find sub-proficiency per question difficulty
         List<Double> subProficiency = new ArrayList<>();
-        for (Map.Entry<Integer, List<Answer>> difficultyToAnswerEntry : mapDifficultyToAnswers.entrySet()) {
-            Integer totalRight = 0;
+        for (Map.Entry<Double, List<Answer>> difficultyToAnswerEntry : mapDifficultyToAnswers.entrySet()) {
+            int totalRight = 0;
             for (Answer answer : difficultyToAnswerEntry.getValue())
                 if (questionService.findByAnswer(answer.getQuestionKey(), answer.getQuestionNumber(), answer.getAnswer()) != null)
                     totalRight += 1;
 
-            subProficiency.add((double) difficultyToAnswerEntry.getKey() * totalRight / ((double) totalAnswers / 2) * 0.75);
+            subProficiency.add(difficultyToAnswerEntry.getKey() * totalRight / ((double) totalAnswers / 2) * 0.75);
         }
-        // Sum prificiencies for key
+        // Sum proficiencies for key
         Double proficiency = subProficiency.stream().mapToDouble(Double::doubleValue).sum();
 
         // Construct response
@@ -53,12 +53,12 @@ public class ProficiencyService {
         return response;
     }
 
-    public Map<Integer, List<Answer>> mapDifficultyToAnswers(List<Answer> answers) {
-        Map<Integer, List<Answer>> mapDifficultyToAnswers = new HashMap<>();
+    public Map<Double, List<Answer>> mapDifficultyToAnswers(List<Answer> answers) {
+        Map<Double, List<Answer>> mapDifficultyToAnswers = new HashMap<>();
 
         for (Answer answer : answers) {
             Question question = questionService.findQuestionByAnswer(answer.getQuestionKey(), answer.getQuestionNumber());
-            Integer answerDifficulty = question.getStudentDiffuculty();
+            Double answerDifficulty = question.getStudentDifficulty();
             List<Answer> tempAnswers;
             if (mapDifficultyToAnswers.get(answerDifficulty) == null)
                 tempAnswers = new ArrayList<>();

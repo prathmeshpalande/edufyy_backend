@@ -20,7 +20,7 @@ public class Question {
     private String optionD;
     private Character correctOption;
     private Double developerDifficulty;
-    private Double studentDiffuculty;
+    private Double studentDifficulty;
     private Boolean isPremium;
 
     public Question() {
@@ -37,7 +37,6 @@ public class Question {
         this.optionD = optionD;
         this.correctOption = correctOption;
         this.developerDifficulty = developerDifficulty;
-        this.studentDiffuculty = studentDiffuculty;
         this.isPremium = isPremium;
     }
 
@@ -121,12 +120,12 @@ public class Question {
         this.developerDifficulty = developerDifficulty;
     }
 
-    public Double getStudentDiffuculty() {
-        return studentDiffuculty;
+    public Double getStudentDifficulty() {
+        return studentDifficulty;
     }
 
-    public void setStudentDiffuculty(Double studentDiffuculty) {
-        this.studentDiffuculty = studentDiffuculty;
+    public void setStudentDifficulty(Double studentDifficulty) {
+        this.studentDifficulty = studentDifficulty;
     }
 
     public Boolean getPremium() {
