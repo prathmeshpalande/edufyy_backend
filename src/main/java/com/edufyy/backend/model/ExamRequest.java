@@ -3,14 +3,14 @@ package com.edufyy.backend.model;
 public class ExamRequest {
 
     private String sessionKey;
-    private String examType;
+    private String questionKey;
 
     public ExamRequest() {
     }
 
-    public ExamRequest(String sessionKey, String examType) {
+    public ExamRequest(String sessionKey, String questionKey) {
         this.sessionKey = sessionKey;
-        this.examType = examType;
+        this.questionKey = questionKey;
     }
 
     public String getSessionKey() {
@@ -21,11 +21,11 @@ public class ExamRequest {
         this.sessionKey = sessionKey;
     }
 
-    public String getExamType() {
-        return examType;
+    public String getQuestionKey() {
+        return questionKey;
     }
 
-    public void setExamType(String examType) {
-        this.examType = examType;
+    public void setQuestionKey(String questionKey) {
+        this.questionKey = questionKey;
     }
 }

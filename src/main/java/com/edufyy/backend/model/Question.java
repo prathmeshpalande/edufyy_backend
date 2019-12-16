@@ -19,14 +19,14 @@ public class Question {
     private String optionC;
     private String optionD;
     private Character correctOption;
-    private Integer developerDifficulty;
-    private Integer studentDiffuculty;
+    private Double developerDifficulty;
+    private Double studentDiffuculty;
     private Boolean isPremium;
 
     public Question() {
     }
 
-    public Question(long id, String questionKey, Integer questionNumber, String question, String optionA, String optionB, String optionC, String optionD, Character correctOption, Integer developerDifficulty, Integer studentDiffuculty, Boolean isPremium) {
+    public Question(long id, String questionKey, Integer questionNumber, String question, String optionA, String optionB, String optionC, String optionD, Character correctOption, Double developerDifficulty, Double studentDiffuculty, Boolean isPremium) {
         this.id = id;
         this.questionKey = questionKey;
         this.questionNumber = questionNumber;
@@ -113,19 +113,19 @@ public class Question {
         this.correctOption = correctOption;
     }
 
-    public Integer getDeveloperDifficulty() {
+    public Double getDeveloperDifficulty() {
         return developerDifficulty;
     }
 
-    public void setDeveloperDifficulty(Integer developerDifficulty) {
+    public void setDeveloperDifficulty(Double developerDifficulty) {
         this.developerDifficulty = developerDifficulty;
     }
 
-    public Integer getStudentDiffuculty() {
+    public Double getStudentDiffuculty() {
         return studentDiffuculty;
     }
 
-    public void setStudentDiffuculty(Integer studentDiffuculty) {
+    public void setStudentDiffuculty(Double studentDiffuculty) {
         this.studentDiffuculty = studentDiffuculty;
     }
 
