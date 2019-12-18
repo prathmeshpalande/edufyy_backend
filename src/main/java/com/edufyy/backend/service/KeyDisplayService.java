@@ -25,25 +25,28 @@ public class KeyDisplayService {
         Session session = sessionService.findBySessionKey(keysByLevelRequest.getSessionKey());
         String email = session.getEmail();
 
-        List<QuestionKey> questionKeys = questionKeyService.findByEmail(email);
-
-        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getLevel());
+        List<QuestionKey> questionKeys;
+        if (!keysByLevelRequest.getQuestionKey().equals("0"))
+            questionKeys = questionKeyService.findByEmailQuestionKey(email, keysByLevelRequest.getQuestionKey());
+        else
+            questionKeys = questionKeyService.findByLength(email, Integer.parseInt(keysByLevelRequest.getQuestionKey()) + 1);
+//        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getQuestionKey());
 
         Map<String, List<QuestionKey>> responseData = new HashMap<>();
-        responseData.put("questionKeys", filteredQuestionKeys);
+        responseData.put("questionKeys", questionKeys);
 
         response.setResponseData(responseData);
 
         return response;
     }
 
-    private List<QuestionKey> filterQuestionKeysByLevel(List<QuestionKey> questionKeys, Integer level) {
-
-        List<QuestionKey> filteredQuestionKeys = new ArrayList<>();
-        for (QuestionKey questionKey : questionKeys)
-            if (questionKey.getQuestionKey().split(".").length == level)
-                filteredQuestionKeys.add(questionKey);
-
-        return filteredQuestionKeys;
-    }
+//    private List<QuestionKey> filterQuestionKeysByLevel(List<QuestionKey> questionKeys, String questionKey) {
+//
+//        List<QuestionKey> filteredQuestionKeys = new ArrayList<>();
+//        for (QuestionKey questionKey : questionKeys)
+//            if (questionKey.getQuestionKey().split(".").length == questionKey)
+//                filteredQuestionKeys.add(questionKey);
+//
+//        return filteredQuestionKeys;
+//    }
 }

@@ -13,7 +13,11 @@ public class QuestionKeyService {
     @Autowired
     QuestionKeyRepository questionKeyRepository;
 
-    public List<QuestionKey> findByEmail(String email) {
-        return questionKeyRepository.findByEmail(email);
+    public List<QuestionKey> findByEmailQuestionKey(String email, String questionKey) {
+        return questionKeyRepository.findByEmailQuestionKey(email, questionKey);
+    }
+
+    public List<QuestionKey> findByLength(String email, Integer length) {
+        return questionKeyRepository.findByLength(email, length);
     }
 }

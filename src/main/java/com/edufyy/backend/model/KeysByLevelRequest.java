@@ -3,14 +3,14 @@ package com.edufyy.backend.model;
 public class KeysByLevelRequest {
 
     private String sessionKey;
-    private Integer level;
+    private String questionKey;
 
     public KeysByLevelRequest() {
     }
 
-    public KeysByLevelRequest(String sessionKey, Integer level) {
+    public KeysByLevelRequest(String sessionKey, String questionKey) {
         this.sessionKey = sessionKey;
-        this.level = level;
+        this.questionKey = questionKey;
     }
 
     public String getSessionKey() {
@@ -21,11 +21,11 @@ public class KeysByLevelRequest {
         this.sessionKey = sessionKey;
     }
 
-    public Integer getLevel() {
-        return level;
+    public String getQuestionKey() {
+        return questionKey;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setQuestionKey(String questionKey) {
+        this.questionKey = questionKey;
     }
 }
