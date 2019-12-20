@@ -58,7 +58,7 @@ public class ProficiencyService {
 
         for (Answer answer : answers) {
             Question question = questionService.findQuestionByAnswer(answer.getQuestionKey(), answer.getQuestionNumber());
-            Double answerDifficulty = question.getStudentDiffuculty();
+            Double answerDifficulty = question.getStudentDifficulty();
             List<Answer> tempAnswers;
             if (mapDifficultyToAnswers.get(answerDifficulty) == null)
                 tempAnswers = new ArrayList<>();

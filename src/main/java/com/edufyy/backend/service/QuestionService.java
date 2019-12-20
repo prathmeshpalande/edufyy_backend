@@ -49,7 +49,7 @@ public class QuestionService implements InitializingBean {
                         question.setOptionD("Option D");
                         question.setCorrectOption(correctOptions.get(new Random().nextInt(correctOptions.size())));
                         question.setDeveloperDifficulty(difficulties.get(new Random().nextInt(difficulties.size())));
-                        question.setStudentDiffuculty(difficulties.get(new Random().nextInt(difficulties.size())));
+                        question.setStudentDifficulty(difficulties.get(new Random().nextInt(difficulties.size())));
                         question.setPremium(true);
 
                         questionRepository.save(question);

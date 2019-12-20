@@ -29,7 +29,7 @@ public class KeyDisplayService {
         if (!keysByLevelRequest.getQuestionKey().equals("0"))
             questionKeys = questionKeyService.findByEmailQuestionKey(email, keysByLevelRequest.getQuestionKey());
         else
-            questionKeys = questionKeyService.findByLength(email, Integer.parseInt(keysByLevelRequest.getQuestionKey()) + 1);
+            questionKeys = questionKeyService.findByLength(email, keysByLevelRequest.getQuestionKey().split(".").length + 1);
 //        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getQuestionKey());
 
         Map<String, List<QuestionKey>> responseData = new HashMap<>();
