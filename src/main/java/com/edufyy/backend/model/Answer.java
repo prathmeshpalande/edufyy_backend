@@ -14,13 +14,14 @@ public class Answer {
     private String email;
     private String questionKey;
     private Integer questionNumber;
-    private Integer studentDifficulty;
+    private Double studentDifficulty;
     private Integer surity;
     private Character answer;
+
     public Answer() {
     }
 
-    public Answer(long id, String email, String questionKey, Integer questionNumber, Integer studentDifficulty, Integer surity, Character answer) {
+    public Answer(long id, String email, String questionKey, Integer questionNumber, Double studentDifficulty, Integer surity, Character answer) {
         this.id = id;
         this.email = email;
         this.questionKey = questionKey;
@@ -29,6 +30,7 @@ public class Answer {
         this.surity = surity;
         this.answer = answer;
     }
+
 
     public long getId() {
         return id;
@@ -62,11 +64,11 @@ public class Answer {
         this.questionNumber = questionNumber;
     }
 
-    public Integer getStudentDifficulty() {
+    public Double getStudentDifficulty() {
         return studentDifficulty;
     }
 
-    public void setStudentDifficulty(Integer studentDifficulty) {
+    public void setStudentDifficulty(Double studentDifficulty) {
         this.studentDifficulty = studentDifficulty;
     }
 

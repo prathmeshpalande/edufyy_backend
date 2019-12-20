@@ -3,11 +3,12 @@ package com.edufyy.backend.service;
 import com.edufyy.backend.model.Answer;
 import com.edufyy.backend.model.Session;
 import com.edufyy.backend.repository.SessionRepository;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SessionService {
+public class SessionService implements InitializingBean {
 
     @Autowired
     SessionRepository sessionRepository;
@@ -23,5 +24,14 @@ public class SessionService {
 
     public Session findBySessionKey(String sessionKey) {
         return sessionRepository.findBySessionKey(sessionKey);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Session session = new Session();
+        session.setEmail("palande1996@gmail.com");
+        session.setSessionKey("s");
+
+        sessionRepository.save(session);
     }
 }
