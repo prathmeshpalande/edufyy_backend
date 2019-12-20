@@ -26,10 +26,11 @@ public class KeyDisplayService {
         String email = session.getEmail();
 
         List<QuestionKey> questionKeys;
-        if (!keysByLevelRequest.getQuestionKey().equals("0"))
-            questionKeys = questionKeyService.findByEmailQuestionKey(email, keysByLevelRequest.getQuestionKey());
-        else
-            questionKeys = questionKeyService.findByLength(email, keysByLevelRequest.getQuestionKey().split(".").length + 1);
+        if (keysByLevelRequest.getQuestionKey().equals("0"))
+            questionKeys = questionKeyService.findByEmail(email);
+        else {
+            questionKeys = questionKeyService.findByKeyAndLength(email, keysByLevelRequest.getQuestionKey(), keysByLevelRequest.getQuestionKey().split("/").length + 1);
+        }
 //        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getQuestionKey());
 
         Map<String, List<QuestionKey>> responseData = new HashMap<>();
