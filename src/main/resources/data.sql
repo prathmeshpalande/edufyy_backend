@@ -1,2 +1,0 @@
-insert into question (question_key, question_number, question, option_a, option_b, option_c, option_d, correct_option, developer_difficulty, student_diffuculty, is_premium)
-values ('1.1.1.1', 'Question 1.1.1.1', 'Option A', 'Option B', 'Option C', 'Option D', 'A', 3, 3, 1);
