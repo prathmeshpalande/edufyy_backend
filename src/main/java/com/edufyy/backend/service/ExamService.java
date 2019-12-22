@@ -1,9 +1,6 @@
 package com.edufyy.backend.service;
 
-import com.edufyy.backend.model.ExamRequest;
-import com.edufyy.backend.model.GeneralResponseObject;
-import com.edufyy.backend.model.Question;
-import com.edufyy.backend.model.Session;
+import com.edufyy.backend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +20,23 @@ public class ExamService {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    AnswerService answerService;
+
     public GeneralResponseObject getExam(ExamRequest examRequest) {
 
         // TODO: Return Exam
 
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
         Session session = sessionService.findBySessionKey(examRequest.getSessionKey());
+
+        if (session == null) {
+            response = GeneralResponseObject.getFailureResponse();
+            response.setResponseCode(-1);
+            response.setResponseMessage("Invalid session, please login again");
+            return response;
+        }
+
         String email = session.getEmail();
 
         GeneralResponseObject proficiencyObject = proficiencyService.getProficiency(email, examRequest.getQuestionKey());
@@ -40,6 +48,33 @@ public class ExamService {
         responseData.put("questions", questions);
         response.setResponseData(responseData);
 
+        return response;
+    }
+
+    public GeneralResponseObject registerAnswer(AnswerSubmission answerSubmission) {
+
+        GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
+        Session session = sessionService.findBySessionKey(answerSubmission.getSessionKey());
+
+        if (session == null) {
+            response = GeneralResponseObject.getFailureResponse();
+            response.setResponseCode(-1);
+            response.setResponseMessage("Invalid session, please login again");
+            return response;
+        }
+
+        String email = session.getEmail();
+
+        Answer answer = new Answer();
+        answer.setEmail(email);
+        answer.setAnswer(answerSubmission.getAnswer());
+        answer.setSurity(answerSubmission.getSurity());
+        answer.setQuestionKey(answerSubmission.getQuestionKey());
+        answer.setQuestionNumber(answerSubmission.getQuestionNumber());
+        answer.setStudentDifficulty(answerSubmission.getStudentDifficulty());
+
+        answerService.add(answer);
+        
         return response;
     }
 }

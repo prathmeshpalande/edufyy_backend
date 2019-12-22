@@ -3,8 +3,8 @@ package com.edufyy.backend.service;
 import com.edufyy.backend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.java2d.loops.FillRect;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +23,14 @@ public class KeyDisplayService {
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
 
         Session session = sessionService.findBySessionKey(keysByLevelRequest.getSessionKey());
+
+        if (session == null) {
+            response = GeneralResponseObject.getFailureResponse();
+            response.setResponseCode(-1);
+            response.setResponseMessage("Invalid session, please login again");
+            return response;
+        }
+
         String email = session.getEmail();
 
         List<QuestionKey> questionKeys;

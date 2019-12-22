@@ -24,7 +24,7 @@ public class UserService implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         User user = new User();
         user.setEmail("palande1996@gmail.com");
-        user.setPassword("Primfaya");
+        user.setPassword("praimfaya");
         user.setName("Becca Pramheda");
         user.setPhone("+999999999999");
         user.setSource("Natblida");

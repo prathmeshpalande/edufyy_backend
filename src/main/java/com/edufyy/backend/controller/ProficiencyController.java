@@ -22,13 +22,17 @@ public class ProficiencyController {
     @PostMapping("/get_proficiency")
     public GeneralResponseObject getProficiency(@RequestBody ProficiencyRequest proficiencyRequest) {
 
+        GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
         // Find session to extract email
         Session session = sessionService.findBySessionKey(proficiencyRequest.getSessionKey());
-        if (session == null)
-            // TODO: Add error details if no session found
-            return GeneralResponseObject.getFailureResponse();
+        if (session == null) {
+            response = GeneralResponseObject.getFailureResponse();
+            response.setResponseCode(-1);
+            response.setResponseMessage("Invalid session, please login again");
+            return response;
+        }
 
-        GeneralResponseObject response = proficiencyService.getProficiency(session.getEmail(), proficiencyRequest.getQuestionKey());
+        response = proficiencyService.getProficiency(session.getEmail(), proficiencyRequest.getQuestionKey());
 
         return response;
 
