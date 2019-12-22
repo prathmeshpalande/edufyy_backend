@@ -1,10 +1,7 @@
 package com.edufyy.backend.service;
 
 import com.edufyy.backend.model.Answer;
-import com.edufyy.backend.model.Question;
-import com.edufyy.backend.model.User;
 import com.edufyy.backend.repository.AnswerRepository;
-import com.edufyy.backend.repository.UserRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,7 +40,7 @@ public class AnswerService implements InitializingBean {
                         answer.setQuestionKey("" + a + "/" + b + "/" + c);
                         answer.setQuestionNumber(d);
                         answer.setStudentDifficulty(difficulties.get(new Random().nextInt(difficulties.size())));
-                        answer.setSurity(difficulties.get(new Random().nextInt(difficulties.size())).intValue());
+                        answer.setSurety(difficulties.get(new Random().nextInt(difficulties.size())).intValue());
                         answer.setAnswer(correctOptions.get(new Random().nextInt(correctOptions.size())));
 
                         answerRepository.save(answer);

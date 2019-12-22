@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.time.Duration;
+import java.time.Instant;
+
 @Service
 public class ProficiencyService {
 
@@ -22,15 +25,15 @@ public class ProficiencyService {
 
     public GeneralResponseObject getProficiency(String email, String questionKey) {
 
+        Instant start = Instant.now();
+
         List<Answer> answers = answerService.findByQuestionKey(email, questionKey);
 
-        // TODO: Proficiency Calculation Logic
         // Map difficulty to answers
         Map<Double, List<Answer>> mapDifficultyToAnswers = mapDifficultyToAnswers(answers);
         // Count total answers
         int totalAnswers = answers.size();
 
-        // TODO: Find individual proficiency and calculate key proficiency
         // Find sub-proficiency per question difficulty
         List<Double> subProficiency = new ArrayList<>();
         for (Map.Entry<Double, List<Answer>> difficultyToAnswerEntry : mapDifficultyToAnswers.entrySet()) {
@@ -50,6 +53,9 @@ public class ProficiencyService {
         responseData.put("proficiency", proficiency);
         response.setResponseData(responseData);
 
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
+        System.out.println("PROFICIENCY CALCULATION: Time taken: "+ timeElapsed.toMillis() +" milliseconds");
         return response;
     }
 

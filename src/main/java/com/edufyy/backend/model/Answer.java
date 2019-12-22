@@ -15,19 +15,19 @@ public class Answer {
     private String questionKey;
     private Integer questionNumber;
     private Double studentDifficulty;
-    private Integer surity;
+    private Integer surety;
     private Character answer;
 
     public Answer() {
     }
 
-    public Answer(long id, String email, String questionKey, Integer questionNumber, Double studentDifficulty, Integer surity, Character answer) {
+    public Answer(long id, String email, String questionKey, Integer questionNumber, Double studentDifficulty, Integer surety, Character answer) {
         this.id = id;
         this.email = email;
         this.questionKey = questionKey;
         this.questionNumber = questionNumber;
         this.studentDifficulty = studentDifficulty;
-        this.surity = surity;
+        this.surety = surety;
         this.answer = answer;
     }
 
@@ -72,12 +72,12 @@ public class Answer {
         this.studentDifficulty = studentDifficulty;
     }
 
-    public Integer getSurity() {
-        return surity;
+    public Integer getSurety() {
+        return surety;
     }
 
-    public void setSurity(Integer surity) {
-        this.surity = surity;
+    public void setSurety(Integer surety) {
+        this.surety = surety;
     }
 
     public Character getAnswer() {
