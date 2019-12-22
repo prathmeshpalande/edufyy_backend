@@ -89,6 +89,11 @@ public class EntryExitService {
                 responseData.put("sessionKey", sessionKey);
                 response.setResponseData(responseData);
             }
+            else {
+                response = GeneralResponseObject.getFailureResponse();
+                response.setResponseMessage("Invalid Username/Password, please try again!");
+                response.setResponseCode(-1);
+            }
         }
         else {
             response = GeneralResponseObject.getFailureResponse();

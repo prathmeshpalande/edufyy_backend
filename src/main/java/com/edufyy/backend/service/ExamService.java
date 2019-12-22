@@ -68,13 +68,13 @@ public class ExamService {
         Answer answer = new Answer();
         answer.setEmail(email);
         answer.setAnswer(answerSubmission.getAnswer());
-        answer.setSurity(answerSubmission.getSurity());
+        answer.setSurity(answerSubmission.getSurety());
         answer.setQuestionKey(answerSubmission.getQuestionKey());
         answer.setQuestionNumber(answerSubmission.getQuestionNumber());
         answer.setStudentDifficulty(answerSubmission.getStudentDifficulty());
 
         answerService.add(answer);
-        
+
         return response;
     }
 }

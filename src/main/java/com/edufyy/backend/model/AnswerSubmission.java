@@ -6,18 +6,18 @@ public class AnswerSubmission {
     private String questionKey;
     private Integer questionNumber;
     private Double studentDifficulty;
-    private Integer surity;
+    private Integer surety;
     private Character answer;
 
     public AnswerSubmission() {
     }
 
-    public AnswerSubmission(String sessionKey, String questionKey, Integer questionNumber, Double studentDifficulty, Integer surity, Character answer) {
+    public AnswerSubmission(String sessionKey, String questionKey, Integer questionNumber, Double studentDifficulty, Integer surety, Character answer) {
         this.sessionKey = sessionKey;
         this.questionKey = questionKey;
         this.questionNumber = questionNumber;
         this.studentDifficulty = studentDifficulty;
-        this.surity = surity;
+        this.surety = surety;
         this.answer = answer;
     }
 
@@ -53,12 +53,12 @@ public class AnswerSubmission {
         this.studentDifficulty = studentDifficulty;
     }
 
-    public Integer getSurity() {
-        return surity;
+    public Integer getSurety() {
+        return surety;
     }
 
-    public void setSurity(Integer surity) {
-        this.surity = surity;
+    public void setSurety(Integer surety) {
+        this.surety = surety;
     }
 
     public Character getAnswer() {
