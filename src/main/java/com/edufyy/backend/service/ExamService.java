@@ -4,9 +4,7 @@ import com.edufyy.backend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ExamService {
@@ -43,6 +41,9 @@ public class ExamService {
         Double proficiency = ((Map <String ,Double>) proficiencyObject.getResponseData()).get("proficiency");
 
         List<Question> questions = questionService.getQuestions(examRequest.getQuestionKey(), proficiency);
+        Collections.shuffle(questions);
+
+        questions = questions.subList(0, (questions.size() >= examRequest.getQuestionCount()) ? examRequest.getQuestionCount() : questions.size());
 
         Map<String, List<Question>> responseData = new HashMap<>();
         responseData.put("questions", questions);
