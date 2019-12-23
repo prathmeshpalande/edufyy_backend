@@ -1,8 +1,6 @@
 package com.edufyy.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Question {
@@ -13,7 +11,11 @@ public class Question {
 
     private String questionKey;
     private Integer questionNumber;
+
+    @Lob
+    @Column( length = 100000 )
     private String question;
+
     private String optionA;
     private String optionB;
     private String optionC;
