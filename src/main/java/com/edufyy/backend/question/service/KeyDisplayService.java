@@ -8,6 +8,7 @@ import com.edufyy.backend.question.model.QuestionKey;
 import com.edufyy.backend.question.model.QuestionKeyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.security.util.ArrayUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,26 +47,49 @@ public class KeyDisplayService {
         }
 //        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getQuestionKey());
 
-        Map<String, QuestionKey> remapedQuestionKeys = remapQuestionKeyToResponse(questionKeys);
+        List<QuestionKeyResponse> questionKeyResponses = nestKeys(questionKeys);
 
-
-        Map<String, Map<String, QuestionKey>> responseData = new HashMap<>();
-        responseData.put("questionKeys", remapedQuestionKeys);
+        Map<String, List<QuestionKeyResponse>> responseData = new HashMap<>();
+        responseData.put("questionKeys", questionKeyResponses);
 
         response.setResponseData(responseData);
 
         return response;
     }
 
-    public Map<String, QuestionKey> remapQuestionKeyToResponse(List<QuestionKey> questionKeys) {
-        Map<String, QuestionKey> remapedQuestionKeys = new HashMap<>();
+    private List<QuestionKeyResponse> nestKeys(List<QuestionKey> questionKeys) {
+        Map<String, QuestionKeyResponse> mapQuestionKeyResponses = new HashMap<>();
+
+        List<QuestionKeyResponse> listQuestionKeyResponse = new ArrayList<>();
+
+        Integer baseLength = questionKeys.get(0).getQuestionKey().split("/").length;
 
         for (QuestionKey questionKey : questionKeys) {
-            String questionKeyKey = questionKey.getQuestionKey();
-            remapedQuestionKeys.putIfAbsent(questionKeyKey, questionKey);
+
+            String[] keyQuestionKeySplit = questionKey.getQuestionKey().split("/");
+
+            QuestionKeyResponse questionKeyResponse = new QuestionKeyResponse();
+            questionKeyResponse.setId(questionKey.getId());
+            questionKeyResponse.setName(questionKey.getName());
+            questionKeyResponse.setEmail(questionKey.getEmail());
+            questionKeyResponse.setQuestionKey(questionKey.getQuestionKey());
+            questionKeyResponse.setQuestionKeys(new ArrayList<>());
+
+            if (keyQuestionKeySplit.length != baseLength) {
+                Integer lastIndexOfSeparator = questionKey.getQuestionKey().lastIndexOf('/');
+                QuestionKeyResponse innerQuestionKeyResponse = mapQuestionKeyResponses.get(questionKey.getQuestionKey().substring(0, lastIndexOfSeparator));
+                List<QuestionKeyResponse> questionKeyResponses = innerQuestionKeyResponse.getQuestionKeys();
+                questionKeyResponses.add(questionKeyResponse);
+            }
+            mapQuestionKeyResponses.put(questionKey.getQuestionKey(), questionKeyResponse);
+
         }
 
-        return remapedQuestionKeys;
+        for (Map.Entry<String, QuestionKeyResponse> entry : mapQuestionKeyResponses.entrySet())
+            if (entry.getKey().split("/").length == baseLength)
+                listQuestionKeyResponse.add(entry.getValue());
+
+        return listQuestionKeyResponse;
     }
 
 //    private List<QuestionKey> filterQuestionKeysByLevel(List<QuestionKey> questionKeys, String questionKey) {

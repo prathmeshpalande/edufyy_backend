@@ -5,18 +5,21 @@ import java.util.List;
 public class QuestionKeyResponse {
 
     private long id;
+
     private String email;
-    private List<QuestionKeyResponse> questionKeys;
+    private String questionKey;
     private String name;
+    private List<QuestionKeyResponse> questionKeys;
 
     public QuestionKeyResponse() {
     }
-
-    public QuestionKeyResponse(long id, String email, List<QuestionKeyResponse> questionKeys, String name) {
+    
+    public QuestionKeyResponse(long id, String email, String questionKey, String name, List<QuestionKeyResponse> questionKeys) {
         this.id = id;
         this.email = email;
-        this.questionKeys = questionKeys;
+        this.questionKey = questionKey;
         this.name = name;
+        this.questionKeys = questionKeys;
     }
 
     public long getId() {
@@ -35,12 +38,12 @@ public class QuestionKeyResponse {
         this.email = email;
     }
 
-    public List<QuestionKeyResponse> getQuestionKeys() {
-        return questionKeys;
+    public String getQuestionKey() {
+        return questionKey;
     }
 
-    public void setQuestionKeys(List<QuestionKeyResponse> questionKeys) {
-        this.questionKeys = questionKeys;
+    public void setQuestionKey(String questionKey) {
+        this.questionKey = questionKey;
     }
 
     public String getName() {
@@ -49,5 +52,13 @@ public class QuestionKeyResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<QuestionKeyResponse> getQuestionKeys() {
+        return questionKeys;
+    }
+
+    public void setQuestionKeys(List<QuestionKeyResponse> questionKeys) {
+        this.questionKeys = questionKeys;
     }
 }
