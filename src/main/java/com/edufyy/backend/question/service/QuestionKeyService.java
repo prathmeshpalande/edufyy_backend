@@ -27,7 +27,7 @@ public class QuestionKeyService implements InitializingBean {
         for (int a = 1; a < 5; a++) {
             QuestionKey questionKey = new QuestionKey();
             questionKey.setEmail("palande1996@gmail.com");
-            questionKey.setQuestionKey("" + a);
+            questionKey.setQuestionKey("/" + a);
             questionKey.setName("Question Key " + a);
 
             questionKeyRepository.save(questionKey);
@@ -35,7 +35,7 @@ public class QuestionKeyService implements InitializingBean {
             for (int b = 1; b < 5; b++) {
                 QuestionKey questionKey1 = new QuestionKey();
                 questionKey1.setEmail("palande1996@gmail.com");
-                questionKey1.setQuestionKey("" + a + "/" + b);
+                questionKey1.setQuestionKey("/" + a + "/" + b);
                 questionKey1.setName("Question Key " + a + "/" + b);
 
                 questionKeyRepository.save(questionKey1);
@@ -43,7 +43,7 @@ public class QuestionKeyService implements InitializingBean {
                 for (int c = 1; c < 5; c++) {
                     QuestionKey questionKey2 = new QuestionKey();
                     questionKey2.setEmail("palande1996@gmail.com");
-                    questionKey2.setQuestionKey("" + a + "/" + b + "/" + c);
+                    questionKey2.setQuestionKey("/" + a + "/" + b + "/" + c);
                     questionKey2.setName("Question Key " + a + "/" + b + "/" + c);
 
                     questionKeyRepository.save(questionKey2);
