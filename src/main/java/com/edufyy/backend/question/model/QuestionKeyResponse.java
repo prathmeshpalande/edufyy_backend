@@ -13,6 +13,7 @@ public class QuestionKeyResponse {
 
     public QuestionKeyResponse() {
     }
+    
     public QuestionKeyResponse(long id, String email, String questionKey, String name, List<QuestionKeyResponse> questionKeys) {
         this.id = id;
         this.email = email;
