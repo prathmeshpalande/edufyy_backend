@@ -5,9 +5,11 @@ import com.edufyy.backend.auth.service.SessionService;
 import com.edufyy.backend.general.model.GeneralResponseObject;
 import com.edufyy.backend.question.model.KeysByLevelRequest;
 import com.edufyy.backend.question.model.QuestionKey;
+import com.edufyy.backend.question.model.QuestionKeyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +46,26 @@ public class KeyDisplayService {
         }
 //        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getQuestionKey());
 
-        Map<String, List<QuestionKey>> responseData = new HashMap<>();
-        responseData.put("questionKeys", questionKeys);
+        Map<String, QuestionKey> remapedQuestionKeys = remapQuestionKeyToResponse(questionKeys);
+
+
+        Map<String, Map<String, QuestionKey>> responseData = new HashMap<>();
+        responseData.put("questionKeys", remapedQuestionKeys);
 
         response.setResponseData(responseData);
 
         return response;
+    }
+
+    public Map<String, QuestionKey> remapQuestionKeyToResponse(List<QuestionKey> questionKeys) {
+        Map<String, QuestionKey> remapedQuestionKeys = new HashMap<>();
+
+        for (QuestionKey questionKey : questionKeys) {
+            String questionKeyKey = questionKey.getQuestionKey();
+            remapedQuestionKeys.putIfAbsent(questionKeyKey, questionKey);
+        }
+
+        return remapedQuestionKeys;
     }
 
 //    private List<QuestionKey> filterQuestionKeysByLevel(List<QuestionKey> questionKeys, String questionKey) {
