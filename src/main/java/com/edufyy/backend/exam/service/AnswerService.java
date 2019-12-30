@@ -37,7 +37,7 @@ public class AnswerService implements InitializingBean {
                     for (int d = 1; d < 5; d++) {
                         Answer answer = new Answer();
                         answer.setEmail("palande1996@gmail.com");
-                        answer.setQuestionKey("" + a + "/" + b + "/" + c);
+                        answer.setQuestionKey("/" + a + "/" + b + "/" + c);
                         answer.setQuestionNumber(d);
                         answer.setStudentDifficulty(difficulties.get(new Random().nextInt(difficulties.size())));
                         answer.setSurety(difficulties.get(new Random().nextInt(difficulties.size())).intValue());
