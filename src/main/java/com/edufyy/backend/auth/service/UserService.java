@@ -20,6 +20,10 @@ public class UserService implements InitializingBean {
         return userRepository.findByEmail(email);
     }
 
+    public Integer updatePassword(String email, String password) {
+        return userRepository.updatePassword(email, password);
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         User user = new User();
