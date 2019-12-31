@@ -17,16 +17,16 @@ public class QuestionService implements InitializingBean {
     @Autowired
     QuestionRepository questionRepository;
 
-    public Question findQuestionByAnswer(String questionKey, Integer questionNumber) {
-        return questionRepository.findQuestionByAnswer(questionKey, questionNumber);
+    public Question findQuestionByUniqueIdentification(String questionKey, Integer questionNumber, String email) {
+        return questionRepository.findQuestionByUniqueIdentification(questionKey, questionNumber, email);
     }
 
-    public Question findByAnswer(String questionKey, Integer questionNumber, Character answer) {
-        return questionRepository.findByAnswer(questionKey, questionNumber, answer);
+    public Question findByAnswer(String questionKey, Integer questionNumber, Character answer, String email) {
+        return questionRepository.findByAnswer(questionKey, questionNumber, answer, email);
     }
 
-    public List<Question> getQuestions(String questionKey, Double proficiency) {
-        return questionRepository.getQuestions(questionKey, proficiency);
+    public List<Question> getQuestions(String questionKey, Double proficiency, String email) {
+        return questionRepository.getQuestions(questionKey, proficiency, email);
     }
 
     @Override
@@ -40,6 +40,7 @@ public class QuestionService implements InitializingBean {
                 for (int c = 1; c < 5; c++) {
                     for (int d = 1; d < 5; d++) {
                         Question question = new Question();
+                        question.setEmail("palande1996@gmail.com");
                         question.setQuestionKey("/" + a + "/" + b + "/" + c);
                         question.setQuestionNumber(d);
                         question.setQuestion("Question " + d);
