@@ -1,9 +1,6 @@
 package com.edufyy.backend.auth.service;
 
-import com.edufyy.backend.auth.model.LoginCredentials;
-import com.edufyy.backend.auth.model.Session;
-import com.edufyy.backend.auth.model.SignupRequest;
-import com.edufyy.backend.auth.model.User;
+import com.edufyy.backend.auth.model.*;
 import com.edufyy.backend.general.model.GeneralResponseObject;
 import com.edufyy.backend.util.Emailer;
 import com.edufyy.backend.util.MD5;
@@ -102,6 +99,26 @@ public class EntryExitService {
         else {
             response = GeneralResponseObject.getFailureResponse();
             response.setResponseMessage("Invalid user. Please try signing up!");
+        }
+
+        return response;
+    }
+
+    public GeneralResponseObject resetPassword(ResetPasswordRequest resetPasswordRequest) {
+        GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
+
+        User user = userService.findByEmail(resetPasswordRequest.getEmail());
+        if (user != null) {
+            if (user.getPassword().equals(resetPasswordRequest.getOldPassword()))
+                userService.updatePassword(resetPasswordRequest.getEmail(), resetPasswordRequest.getNewPassword());
+            else {
+                response.setResponseMessage("Incorrect old password, please try again!");
+                response.setResponseCode(-1);
+            }
+        }
+        else {
+            response.setResponseCode(-2);
+            response.setResponseMessage("No such user found!");
         }
 
         return response;

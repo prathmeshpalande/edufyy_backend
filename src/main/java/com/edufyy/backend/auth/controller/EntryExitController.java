@@ -1,5 +1,6 @@
 package com.edufyy.backend.auth.controller;
 
+import com.edufyy.backend.auth.model.ResetPasswordRequest;
 import com.edufyy.backend.auth.service.EntryExitService;
 import com.edufyy.backend.auth.model.LoginCredentials;
 import com.edufyy.backend.auth.model.SignupRequest;
@@ -27,6 +28,13 @@ public class EntryExitController {
     public GeneralResponseObject login(@RequestBody LoginCredentials loginCredentials) {
 
         GeneralResponseObject response = entryExitService.login(loginCredentials);
+
+        return response;
+    }
+
+    @PostMapping("/reset_password")
+    public GeneralResponseObject resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
+        GeneralResponseObject response = entryExitService.resetPassword(resetPasswordRequest);
 
         return response;
     }
