@@ -19,7 +19,6 @@ public class ProfileService {
     UserService userService;
 
     public GeneralResponseObject getProfile(ProfileRequest profileRequest) {
-        // TODO: Write get profile code
         GeneralResponseObject response = GeneralResponseObject.getSuccessResponse();
 
         Session session = sessionService.findBySessionKey(profileRequest.getSessionKey());
