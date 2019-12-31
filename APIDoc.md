@@ -284,3 +284,87 @@ Sample I/Os
 	}
 	```
 ---
+
+* Profile
+
+  URL: http://localhost:8080/profile
+  
+  Method: POST
+  
+  Request Body:
+  ```json
+  {
+	"sessionKey": "s"
+  }
+  ```
+  
+  Responses:
+  	- Failure:
+	```json
+	{
+             "responseCode": -2,
+             "responseMessage": "Invalid Session. Please re-login",
+             "responseData": null
+        }
+	```
+
+	- Success:
+	```json
+	{
+             "responseCode": 1,
+             "responseMessage": "Success",
+             "responseData": {
+                 "id": 1,
+                 "email": "palande1996@gmail.com",
+                 "password": "praimfaya",
+                 "name": "Becca Pramheda",
+                 "phone": "+999999999999",
+                 "source": "Natblida",
+                 "premium": true
+             }
+         }
+	```
+---
+
+* Reset Password
+
+  URL: http://localhost:8080/reset_password
+  
+  Method: POST
+  
+  Request Body:
+  ```json
+  {
+	"email": "palande1996@gmail.com",
+	"oldPassword": "praimfaya",
+	"newPassword": "sanctum"
+  }
+  ```
+  
+  Responses:
+  	- Failure:
+	```json
+	{
+             "responseCode": -1,
+             "responseMessage": "Incorrect old password, please try again!",
+             "responseData": null
+        }
+	```
+	
+	```json
+	{
+             "responseCode": -2,
+             "responseMessage": "No such user found!",
+             "responseData": null
+         }
+	```
+
+	- Success:
+	```json
+	{
+             "responseCode": 1,
+             "responseMessage": "Success",
+             "responseData": null
+        }
+	```
+---
