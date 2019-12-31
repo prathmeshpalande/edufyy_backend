@@ -41,7 +41,7 @@ public class ProficiencyService {
         for (Map.Entry<Double, List<Answer>> difficultyToAnswerEntry : mapDifficultyToAnswers.entrySet()) {
             Integer totalRight = 0;
             for (Answer answer : difficultyToAnswerEntry.getValue())
-                if (questionService.findByAnswer(answer.getQuestionKey(), answer.getQuestionNumber(), answer.getAnswer()) != null)
+                if (questionService.findByAnswer(answer.getQuestionKey(), answer.getQuestionNumber(), answer.getAnswer(), answer.getEmail()) != null)
                     totalRight += 1;
 
             subProficiency.add(difficultyToAnswerEntry.getKey() * totalRight / ((double) totalAnswers / 2) * 0.75);
@@ -65,7 +65,7 @@ public class ProficiencyService {
         Map<Double, List<Answer>> mapDifficultyToAnswers = new HashMap<>();
 
         for (Answer answer : answers) {
-            Question question = questionService.findQuestionByAnswer(answer.getQuestionKey(), answer.getQuestionNumber());
+            Question question = questionService.findQuestionByUniqueIdentification(answer.getQuestionKey(), answer.getQuestionNumber(), answer.getEmail());
             Double answerDifficulty = question.getStudentDifficulty();
             List<Answer> tempAnswers;
             if (mapDifficultyToAnswers.get(answerDifficulty) == null)

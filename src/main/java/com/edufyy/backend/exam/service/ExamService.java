@@ -48,7 +48,7 @@ public class ExamService {
         GeneralResponseObject proficiencyObject = proficiencyService.getProficiency(email, examRequest.getQuestionKey());
         Double proficiency = ((Map <String ,Double>) proficiencyObject.getResponseData()).get("proficiency");
 
-        List<Question> questions = questionService.getQuestions(examRequest.getQuestionKey(), proficiency);
+        List<Question> questions = questionService.getQuestions(examRequest.getQuestionKey(), proficiency, email);
         Collections.shuffle(questions);
 
         questions = questions.subList(0, (questions.size() >= examRequest.getQuestionCount()) ? examRequest.getQuestionCount() : questions.size());
@@ -83,6 +83,13 @@ public class ExamService {
         answer.setStudentDifficulty(answerSubmission.getStudentDifficulty());
 
         answerService.add(answer);
+
+        Question question = questionService.findQuestionByUniqueIdentification(answerSubmission.getQuestionKey(), answerSubmission.getQuestionNumber(), email);
+
+        Map<String, Boolean> responseData = new HashMap<>();
+        responseData.put("isCorrect", question.getCorrectOption().equals(answerSubmission.getAnswer()));
+
+        response.setResponseData(responseData);
 
         return response;
     }

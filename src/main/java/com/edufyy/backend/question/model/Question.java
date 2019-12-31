@@ -9,6 +9,7 @@ public class Question {
     @GeneratedValue
     private long id;
 
+    private String email;
     private String questionKey;
     private Integer questionNumber;
 
@@ -28,8 +29,9 @@ public class Question {
     public Question() {
     }
 
-    public Question(long id, String questionKey, Integer questionNumber, String question, String optionA, String optionB, String optionC, String optionD, Character correctOption, Double developerDifficulty, Double studentDifficulty, Boolean isPremium) {
+    public Question(long id, String email, String questionKey, Integer questionNumber, String question, String optionA, String optionB, String optionC, String optionD, Character correctOption, Double developerDifficulty, Double studentDifficulty, Boolean isPremium) {
         this.id = id;
+        this.email = email;
         this.questionKey = questionKey;
         this.questionNumber = questionNumber;
         this.question = question;
@@ -137,5 +139,13 @@ public class Question {
 
     public void setPremium(Boolean premium) {
         isPremium = premium;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
