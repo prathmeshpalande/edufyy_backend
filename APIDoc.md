@@ -278,10 +278,12 @@ Sample I/Os
 	- Success:
 	```json
 	{
-	    "responseCode":1,
-	    "responseMessage":"Success",
-	    "responseData":null
-	}
+             "responseCode": 1,
+             "responseMessage": "Success",
+             "responseData": {
+                 "isCorrect": true
+             }
+        }
 	```
 ---
 
