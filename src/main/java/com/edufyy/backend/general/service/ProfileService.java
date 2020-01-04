@@ -28,7 +28,7 @@ public class ProfileService {
             response.setResponseData(user);
         } else {
             response.setResponseMessage("Invalid Session. Please re-login");
-            response.setResponseCode(-2);
+            response.setResponseCode(-1);
         }
 
         return response;
