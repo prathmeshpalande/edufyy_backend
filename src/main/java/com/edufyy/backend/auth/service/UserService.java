@@ -33,6 +33,7 @@ public class UserService implements InitializingBean {
         user.setPhone("+999999999999");
         user.setSource("Natblida");
         user.setPremium(true);
+        user.setCategory(0);
 
         userRepository.save(user);
     }

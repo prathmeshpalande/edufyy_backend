@@ -20,11 +20,12 @@ public class User {
     private String phone;
     private String source;
     private Boolean isPremium;
+    private Integer category;
 
     public User() {
     }
 
-    public User(long id, String email, String password, String name, String phone, String source, Boolean isPremium) {
+    public User(long id, String email, String password, String name, String phone, String source, Boolean isPremium, Integer category) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -32,6 +33,7 @@ public class User {
         this.phone = phone;
         this.source = source;
         this.isPremium = isPremium;
+        this.category = category;
     }
 
     public long getId() {
@@ -88,5 +90,13 @@ public class User {
 
     public void setPremium(Boolean premium) {
         isPremium = premium;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 }

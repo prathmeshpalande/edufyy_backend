@@ -45,7 +45,7 @@ public class KeyDisplayService {
         else {
             questionKeys = questionKeyService.findByKeyAndLength(email, keysByLevelRequest.getQuestionKey(), keysByLevelRequest.getQuestionKey().split("/").length + 1);
         }
-//        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getQuestionKey());
+//        List<QuestionKey> filteredQuestionKeys = filterQuestionKeysByLevel(questionKeys, keysByLevelRequest.getSectionKey());
 
         List<QuestionKeyResponse> questionKeyResponses = nestKeys(questionKeys);
 
@@ -96,7 +96,7 @@ public class KeyDisplayService {
 //
 //        List<QuestionKey> filteredQuestionKeys = new ArrayList<>();
 //        for (QuestionKey questionKey : questionKeys)
-//            if (questionKey.getQuestionKey().split(".").length == questionKey)
+//            if (questionKey.getSectionKey().split(".").length == questionKey)
 //                filteredQuestionKeys.add(questionKey);
 //
 //        return filteredQuestionKeys;
